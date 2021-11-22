@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비만 계산기</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/biman.css">
+</head>
+<body>
+  <label class="biman">
+    <h1>당신의 비만도</h1>
+    <div class="inputBox">
+      <label><span>몸무게</span><input type="text" id="weight" placeholder="몸무게를 kg단위로 입력해주세요."></label></div>
+    <div class="inputBox">
+      <label><span>키</span><input type="text" id="height" placeholder="키를 cm단위로 입력해주세요."></label></div>
+    <button id="btnResult">결과보기</button>
+    <button id="btnReset">처음으로</button>
+
+    <div id="result"></div>
+  </div>
+</body>
+<script>
+  const weight = document.querySelector("#weight");  //DOM 찾기
+  const height = document.querySelector("#height");
+  const btnResult = document.querySelector("#btnResult");
+  const btnReset = document.querySelector("#btnReset");
+  const result = document.querySelector("#result");
+  //btn을 누르면 weight에 담겨진 값을 받아다가 myWeight에 넣겟다.
+  btnReset.addEventListener("click",function(){
+    weight.value = "";
+    height.value = "";
+    result.textContent = "";
+  })
+  btnResult.addEventListener("click",function(){
+    console.log(weight.value);
+    const myWeight = weight.value;
+    const myHeight = height.value;
+    const meterHeight = myHeight / 100;
+    const biman = myWeight / (meterHeight * meterHeight);
+    if (biman <= 18.5) {
+      result.textContent = "당신은 저체중입니다.";
+    } else if (biman > 18.5 && biman < 23) {
+      result.textContent = "당신은 정상입니다.";
+    } else if (biman >= 23 && biman < 25) {
+      result.textContent = "당신은 과체중입니다.";
+    } else if (biman >= 25 && biman < 30) {
+      result.textContent = "당신은 비만입니다.";
+    } else {
+      result.textContent = "당신은 고도비반입니다.";
+    }
+  });
+  
+</script>
+</html>
