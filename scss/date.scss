@@ -19,23 +19,23 @@
       transform-origin: 50% 100%;
     }
     .hour {
-      width: 30px;
+      width: 16px;
       height: 120px;
       background-color: rgb(233, 5, 5);
-      margin-left: -15px;
+      margin-left: -8px;
       transform: rotate(30deg);
     }
     .min {
-      width: 20px;
+      width: 10px;
       height: 130px;
       background-color: rgb(206, 117, 1);
-      margin-left: -10px;
+      margin-left: -5px;
     }
     .sec {
-      width: 10px;
+      width: 2px;
       height: 140px;
       background-color: rgb(2, 84, 206);
-      margin-left: -5px;
+      margin-left: -1px;
     }
   }
 }
