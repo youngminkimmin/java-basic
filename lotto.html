@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOTTO</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/lotto.css" />
+    <script src="js/gsap/gsap.min.js"></script>
+  </head>
+  <body>
+    <h1>How Much lotto</h1>
+    <div class="btns">
+      <label>
+        <input type="radio" name="lotto" id="" value="1" />
+        <span>1</span>
+      </label>
+      <label>
+        <input type="radio" name="lotto" id="" value="2" />
+        <span>2</span>
+      </label>
+      <label>
+        <input type="radio" name="lotto" id="" value="3" />
+        <span>3</span>
+      </label>
+      <label>
+        <input type="radio" name="lotto" id="" value="4" />
+        <span>4</span>
+      </label>
+      <label>
+        <input type="radio" name="lotto" id="" value="5" />
+        <span>5</span>
+      </label>
+    </div>
+    <div id="lottoPaper">
+      <!-- <ul>
+        <li>3</li>
+        <li>5</li>
+        <li>12</li>
+        <li>23</li>
+        <li>27</li>
+        <li>41</li>
+      </ul> -->
+    </div>
+  </body>
+  <script>
+    const lottoPaper = document.querySelector("#lottoPaper");
+
+    const makeLotto = function () {
+      const lotto = []; //1~45까지 들어갈 배열
+      const mylotto = []; // 1~45에서 6개 뽑아서 들어갈 배열
+      for (let i = 1; i < 46; i++) {
+        lotto.push(i); // 반복문 돌려서 현재 빈 배열인 lotto에 숫자 밀어넣기
+      }
+      for (let j = 0; j < 6; j++) {
+        //6개 뽑아서 mylotto에 밀어넣는 반복문
+        const random = Math.floor(Math.random() * (lotto.length - 1));
+        const selected = lotto.splice(random, 1)[0];
+        mylotto.push(selected);
+      }
+      mylotto.sort(function (a, b) {
+        //숫자 정렬
+        return a - b;
+      });
+      //ul 생성해서
+      const ul = document.createElement("ul");
+      //lottoPaper에 밀어넣기
+      lottoPaper.appendChild(ul);
+      for (let k = 0; k < 6; k++) {
+        //6개 뽑은 mylotto를 화면에 뿌리기
+        const selected = mylotto[k];
+        let colors;
+        if (selected <= 10) {
+          colors = "yellow";
+        } else if (selected <= 20) {
+          colors = "blue";
+        } else if (selected <= 30) {
+          colors = "red";
+        } else if (selected <= 40) {
+          colors = "black";
+        } else {
+          colors = "green";
+        }
+
+        ul.innerHTML += `
+        <li class= "${colors}">${mylotto[k]}</li>
+              `;
+      }
+    };
+
+    makeLotto();
+    makeLotto();
+    makeLotto();
+
+    gsap.from("#lottoPaper li", {
+      scale: 0,
+      ease: "elastic",
+      duration: 1.5,
+      stagger: 0.05,
+    });
+    console.log(mylotto);
+  </script>
+</html>
